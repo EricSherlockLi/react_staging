@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 // 唯一id生成库
 import { nanoid } from 'nanoid'
 import './index.css'
 
 export default class Header extends Component {
 
+  // 对接受的props进行：类型，必要性的限制
+  static propTypes = {
+    addTodo:PropTypes.func.isRequired
+  }
+
+  // 键盘事件
   handleKeyUp = (event) => {
     // 解构赋值获取keyCode，target
     const { keyCode, target } = event
     // 判断是否是回车按键
-    if (event.keyCode !== 13)
+    if (keyCode !== 13)
       return
     // 添加的todo名字不能为空
     if (target.value.trim() === '') {
